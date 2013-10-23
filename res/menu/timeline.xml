@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/action_compose"
+        android:showAsAction="ifRoom"
+        android:title="@string/action_settings"
+        android:icon="@android:drawable/ic_menu_edit"
+        android:onClick="onComposeAction"/>
+
+</menu>
