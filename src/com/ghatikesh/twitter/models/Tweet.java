@@ -76,7 +76,7 @@ public class Tweet extends Model{
 
 		return tweets;
 	}
-
+	
 	public String getBody() {
 		return this.body;
 	}

@@ -31,7 +31,7 @@ public class ComposeActivity extends Activity {
 
 		setupViews();
 		tvCharCount.setText("0");
-		
+
 		etTweetText.addTextChangedListener(new TextWatcher() {
 
 			@Override
@@ -55,7 +55,7 @@ public class ComposeActivity extends Activity {
 				}
 				tvCharCount.setText(String.valueOf(s.length()));
 			}
-			
+
 		});
 	}
 
@@ -72,13 +72,22 @@ public class ComposeActivity extends Activity {
 				new JsonHttpResponseHandler() {
 					@Override
 					public void onSuccess(JSONObject json) {
-						
+
 						Tweet tweet = new Tweet(getBaseContext(), json);
-						
-						TweetsAdapter adapter = (TweetsAdapter) getIntent().getSerializableExtra("adapter");
-						
-						adapter.add(tweet);
-						
+
+						try {
+							TweetsAdapter adapter = (TweetsAdapter) getIntent()
+									.getSerializableExtra("adapter");
+							adapter.add(tweet);
+						} catch (RuntimeException e) {
+							Log.d("ERROR", e.toString());
+							// The tweet gets posted successfully I get a
+							// java.lang.RuntimeException: Parcelable
+							// encountered IOException reading a Serializable
+							// object (name = com.ghatikesh.twitter.TweetsAdapter)
+							// It seems to work in most cases, but sometimes we
+							// end up here :/ I can't figure out why.
+						}
 						finish();
 					}
 
@@ -89,7 +98,7 @@ public class ComposeActivity extends Activity {
 					}
 				});
 	}
-	
+
 	public void onCancelTweet(View v) {
 		finish();
 	}
