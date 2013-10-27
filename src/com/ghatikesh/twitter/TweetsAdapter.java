@@ -1,7 +1,6 @@
 package com.ghatikesh.twitter;
 
 
-import java.io.Serializable;
 import java.util.List;
 
 import android.content.Context;
@@ -16,9 +15,7 @@ import android.widget.TextView;
 import com.ghatikesh.twitter.models.Tweet;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
-public class TweetsAdapter extends ArrayAdapter<Tweet> implements Serializable {
-
-	private static final long serialVersionUID = 8963954808304987023L;
+public class TweetsAdapter extends ArrayAdapter<Tweet> {
 
 	public TweetsAdapter(Context context, List<Tweet> tweets) {
 		super(context, 0, tweets);

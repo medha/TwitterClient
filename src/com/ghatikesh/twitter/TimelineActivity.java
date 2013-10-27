@@ -17,10 +17,12 @@ import com.loopj.android.http.JsonHttpResponseHandler;
 
 public class TimelineActivity extends Activity {
 
+	private static final int REQUEST_CODE = 1;
 	private TweetsAdapter adapter;
 	private ListView lvTweets;
 	private int page = 0;
-	private int count = 25;
+	private static final int COUNT = 25;
+	protected ArrayList<Tweet> tweets;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -31,11 +33,11 @@ public class TimelineActivity extends Activity {
 		lvTweets.setOnScrollListener(new EndlessScrollListener() {
 			@Override
 			public void onLoadMore(int page, int totalItemsCount) {
-				customLoadMoreDataFromApi(page);
+				loadDataFromApi(COUNT, page, false);
 			}
 		});
 
-		TwitterClientApp.getRestClient().getHomeTimeline(count, page, new JsonHttpResponseHandler() {
+		TwitterClientApp.getRestClient().getHomeTimeline(COUNT, page,new JsonHttpResponseHandler() {
 
 			@Override
 			public void onSuccess(JSONArray jsonTweets) {
@@ -45,10 +47,11 @@ public class TimelineActivity extends Activity {
 			}
 
 			@Override
-			public void onFailure(Throwable arg0) {
-				Log.d("ERROR", arg0.toString());
+			public void onFailure(Throwable e) {
+				Log.d("ERROR", e.toString());
 			}
 		});
+		
 	}
 
 	@Override
@@ -60,27 +63,33 @@ public class TimelineActivity extends Activity {
 
 	public void onComposeAction(MenuItem mi) {
 		Intent i = new Intent(this, ComposeActivity.class);
-		i.putExtra("adapter", adapter);
-		startActivity(i);
+		startActivityForResult(i, REQUEST_CODE);
 	}
 
-	// Append more data into the adapter
-	public void customLoadMoreDataFromApi(int page) {
-		
-		TwitterClientApp.getRestClient().getHomeTimeline(count, page, new JsonHttpResponseHandler() {
-
-			@Override
-			public void onSuccess(JSONArray jsonTweets) {
-				ArrayList<Tweet> tweets = Tweet.fromJson(getBaseContext(), jsonTweets);
-				adapter.addAll(tweets);
-			}
-
-			@Override
-			public void onFailure(Throwable arg0) {
-				Log.d("ERROR", arg0.toString());
-			}
-		});
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (resultCode == RESULT_OK && requestCode == REQUEST_CODE) {
+			loadDataFromApi(COUNT, 0, true);
+		}
 	}
 
+	private void loadDataFromApi(int count, int page, final boolean clear) {
+		TwitterClientApp.getRestClient().getHomeTimeline(count, page,new JsonHttpResponseHandler() {
+
+					@Override
+					public void onSuccess(JSONArray jsonTweets) {
+						ArrayList<Tweet> tweets = Tweet.fromJson(getBaseContext(), jsonTweets);
+						if(clear) {
+							adapter.clear();
+						}
+						adapter.addAll(tweets);
+					}
+
+					@Override
+					public void onFailure(Throwable e) {
+						Log.d("ERROR", e.toString());
+					}
+				});
+	}
 
 }

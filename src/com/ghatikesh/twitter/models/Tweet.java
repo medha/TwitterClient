@@ -19,7 +19,7 @@ import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
 
 @Table(name = "Tweet")
-public class Tweet extends Model{
+public class Tweet extends Model {
 
 	@Column(name = "user")
 	private User user;
@@ -54,6 +54,12 @@ public class Tweet extends Model{
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public Tweet(String text, String timestamp, User user) {
+		this.body = text;
+		this.timestamp = timestamp;
+		this.user = user;
 	}
 
 	public static ArrayList<Tweet> fromJson(Context c, JSONArray jsonArray) {
