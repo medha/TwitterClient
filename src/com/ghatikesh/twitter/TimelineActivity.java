@@ -10,16 +10,18 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ListView;
 
 import com.ghatikesh.twitter.models.Tweet;
 import com.loopj.android.http.JsonHttpResponseHandler;
+
+import eu.erikw.PullToRefreshListView;
+import eu.erikw.PullToRefreshListView.OnRefreshListener;
 
 public class TimelineActivity extends Activity {
 
 	private static final int REQUEST_CODE = 1;
 	private TweetsAdapter adapter;
-	private ListView lvTweets;
+	private PullToRefreshListView lvTweets;
 	private int page = 0;
 	private static final int COUNT = 25;
 	protected ArrayList<Tweet> tweets;
@@ -28,14 +30,25 @@ public class TimelineActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_timeline);
-
-		lvTweets = (ListView) findViewById(R.id.lvTweets);
+		
+		lvTweets = (PullToRefreshListView) findViewById(R.id.lvTweets);
+	//	lvTweets = (ListView) findViewById(R.id.lvTweets);
+		
 		lvTweets.setOnScrollListener(new EndlessScrollListener() {
 			@Override
 			public void onLoadMore(int page, int totalItemsCount) {
 				loadDataFromApi(COUNT, page, false);
 			}
 		});
+		
+		
+        // Set a listener to be invoked when the list should be refreshed.
+        lvTweets.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+            	loadDataFromApi(COUNT, 0, true);
+            }
+        });
 
 		TwitterClientApp.getRestClient().getHomeTimeline(COUNT, page,new JsonHttpResponseHandler() {
 
@@ -83,6 +96,7 @@ public class TimelineActivity extends Activity {
 							adapter.clear();
 						}
 						adapter.addAll(tweets);
+						lvTweets.onRefreshComplete();
 					}
 
 					@Override
