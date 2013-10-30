@@ -1,17 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Twitter</string>
+    <string name="app_name">Tweeter</string>
     <string name="action_settings">Settings</string>
     <string name="action_compose">Compose</string>
     <string name="hello_world">Hello world!</string>
-    <string name="title_activity_photos">Flickr Photos</string>
-    <string name="login_label">Log in</string>
-    <string name="title_activity_timeline">Twitter Timeline</string>
-    <string name="title_activity_compose">ComposeActivity</string>
+    <string name="login_label">Log in with Twitter</string>
+    <string name="title_activity_timeline">Tweeter</string>
+    <string name="title_activity_compose">New Tweet</string>
     <string name="cancel">Cancel</string>
     <string name="tweet">Tweet</string>
-    <string name="hint">Enter tweet</string>
+    <string name="hint">Compose tweet</string>
     <string name="imageview">Image view</string>
+    <string name="action_profile">Profile</string>
+    <string name="title_activity_profile"></string>
+    <string name="name">Name</string>
+    <string name="tagline">Tagline</string>
+    <string name="_1000_tweets">1000 Tweets</string>
+    <string name="_1000_followers">1000 Followers</string>
+    <string name="_1000_following">1000 Following</string>
+    <string name="profile_picture">Profile picture</string>
+    <string name="title_activity_profile_user"></string>
 
 </resources>

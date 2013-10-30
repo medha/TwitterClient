@@ -4,20 +4,15 @@
     android:layout_height="match_parent"
     tools:context=".TimelineActivity" >
 
-    <eu.erikw.PullToRefreshListView
-        android:id="@+id/lvTweets"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true" >
-    </eu.erikw.PullToRefreshListView>
+    <FrameLayout
+        android:id="@+id/flContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true" >
 
-    <!--     <eu.erikw.PullToRefreshListView
-        android:id="@+id/lvTweets"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true" >
-    </eu.erikw.PullToRefreshListView> -->
-    
+    </FrameLayout>
+
 </RelativeLayout>
