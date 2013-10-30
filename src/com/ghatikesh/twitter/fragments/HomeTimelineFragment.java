@@ -28,7 +28,6 @@ public class HomeTimelineFragment extends TweetListFragment {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		loadDataFromApi(COUNT, PAGE, true);
 	}
 
 	@Override
@@ -42,6 +41,7 @@ public class HomeTimelineFragment extends TweetListFragment {
 			@Override
 			public void onLoadMore(int page, int totalItemsCount) {
 
+				System.out.println("Calling Get HomeTImeline from onScroll: " + page);
 				loadDataFromApi(COUNT, page, false);
 			}
 		});
@@ -49,9 +49,12 @@ public class HomeTimelineFragment extends TweetListFragment {
 		lvTweets.setOnRefreshListener(new OnRefreshListener() {
 			@Override
 			public void onRefresh() {
+				System.out.println("Calling Get HomeTImeline from onRefresh: " + PAGE);
 				loadDataFromApi(COUNT, 0, true);
 			}
 		});
+		System.out.println("Calling Get HomeTimeline from ActivityCreatedpage: " + PAGE);
+		loadDataFromApi(COUNT, PAGE, true);
 	}
 
 	private void loadDataFromApi(int count, int page, final boolean clear) {

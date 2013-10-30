@@ -1,11 +1,14 @@
 package com.ghatikesh.twitter;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.ghatikesh.twitter.models.User;
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -30,7 +33,21 @@ public class ProfileActivity extends FragmentActivity {
 				populateProfileHeader(u);
 				
 			}
-
+			
+			@Override
+			public void onFailure(Throwable e, JSONArray arg1) {
+				Log.d("ERROR", "error 1: " + e.toString());
+				Toast.makeText(getBaseContext(), e + " Please try again later.",
+						Toast.LENGTH_LONG).show();
+			}
+			
+			@Override
+			public void onFailure(Throwable e, JSONObject arg1) {
+				Log.d("ERROR", "error 1: " + e.toString());
+				Toast.makeText(getBaseContext(),
+						e + "Please try again later.",
+						Toast.LENGTH_LONG).show();
+			}
 		});
 	}
 

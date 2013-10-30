@@ -60,7 +60,6 @@ public class TweetsAdapter extends ArrayAdapter<Tweet> {
 			
 			@Override
 			public void onClick(View v) {
-				
 				loadUserProfile(v);
 			}
 		});

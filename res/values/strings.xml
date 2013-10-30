@@ -4,7 +4,6 @@
     <string name="app_name">Tweeter</string>
     <string name="action_settings">Settings</string>
     <string name="action_compose">Compose</string>
-    <string name="hello_world">Hello world!</string>
     <string name="login_label">Log in with Twitter</string>
     <string name="title_activity_timeline">Tweeter</string>
     <string name="title_activity_compose">New Tweet</string>
@@ -16,9 +15,6 @@
     <string name="title_activity_profile"></string>
     <string name="name">Name</string>
     <string name="tagline">Tagline</string>
-    <string name="_1000_tweets">1000 Tweets</string>
-    <string name="_1000_followers">1000 Followers</string>
-    <string name="_1000_following">1000 Following</string>
     <string name="profile_picture">Profile picture</string>
     <string name="title_activity_profile_user"></string>
 

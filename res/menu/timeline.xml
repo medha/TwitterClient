@@ -1,5 +1,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
+      <item
+        android:id="@+id/action_profile"
+        android:showAsAction="ifRoom"
+        android:title="@string/action_profile"
+        android:icon="@drawable/ic_user"
+        android:onClick="onProfileView"/>
+    
     <item
         android:id="@+id/action_compose"
         android:showAsAction="ifRoom"
@@ -7,12 +14,4 @@
         android:icon="@drawable/ic_compose"
         android:onClick="onComposeAction"/>
 
-        <item
-        android:id="@+id/action_profile"
-        android:showAsAction="ifRoom"
-        android:title="@string/action_profile"
-        android:icon="@drawable/ic_user"
-        android:onClick="onProfileView"/>
-    
-    
 </menu>

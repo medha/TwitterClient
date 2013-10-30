@@ -25,8 +25,6 @@ public class MentionsFragment extends TweetListFragment {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
-		loadDataFromApi(COUNT, PAGE, true);
 	}
 	
 	@Override
@@ -39,6 +37,7 @@ public class MentionsFragment extends TweetListFragment {
 			@Override
 			public void onLoadMore(int page, int totalItemsCount) {
 
+				System.out.println("Calling Get Mentions from LoadMore Scroller. page: " + page );
 				loadDataFromApi(COUNT, page, false);
 			}
 		});
@@ -46,9 +45,13 @@ public class MentionsFragment extends TweetListFragment {
 		lvTweets.setOnRefreshListener(new OnRefreshListener() {
 			@Override
 			public void onRefresh() {
+				System.out.println("Calling Get Mentions from onRefreshpage: " + PAGE);
 				loadDataFromApi(COUNT, PAGE, true);
 			}
 		});
+		
+		System.out.println("Calling Get Mentions from ActivityCreatedpage: " + PAGE);
+		loadDataFromApi(COUNT, PAGE, true);
 	}
 	
 	private void loadDataFromApi(int count, int page, final boolean clear) { 
@@ -68,6 +71,42 @@ public class MentionsFragment extends TweetListFragment {
 					lvTweets.onRefreshComplete();
 					}
 				}
+			}
+			
+			@Override
+			public void onSuccess(int arg0, JSONObject arg1) {
+				// TODO Auto-generated method stub
+				super.onSuccess(arg0, arg1);
+			}
+			
+			@Override
+			public void onSuccess(int arg0, String arg1) {
+				// TODO Auto-generated method stub
+				super.onSuccess(arg0, arg1);
+			}
+			
+			@Override
+			public void onFailure(Throwable arg0, String arg1) {
+				// TODO Auto-generated method stub
+				super.onFailure(arg0, arg1);
+			}
+			
+			@Override
+			public void onSuccess(JSONArray arg0) {
+				// TODO Auto-generated method stub
+				super.onSuccess(arg0);
+			}
+			
+			@Override
+			public void onSuccess(JSONObject arg0) {
+				// TODO Auto-generated method stub
+				super.onSuccess(arg0);
+			}
+			
+			@Override
+			public void onSuccess(String arg0) {
+				// TODO Auto-generated method stub
+				super.onSuccess(arg0);
 			}
 			
 			@Override
