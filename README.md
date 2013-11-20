@@ -1,6 +1,8 @@
 # Tweeter
 ### The simple yet stunning Twitter client
 
+![Screenshots](/res/drawable/twitter.jpg "Screenshots")
+
 ## Overview
 
 Tweeter is a Twitter client. The following things are supported:
